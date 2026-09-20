@@ -18,7 +18,6 @@ button,input,textarea,select{font:inherit}
 button{cursor:pointer}
 
 .app{
-  width:100%;
   max-width:520px;
   min-height:100vh;
   margin:auto;
@@ -31,17 +30,17 @@ button{cursor:pointer}
   display:flex;
   align-items:center;
   justify-content:center;
-  padding:22px;
+  padding:20px;
 }
 
 .loginBox{
   width:100%;
+  padding:28px 22px;
+  border-radius:28px;
   background:#0d2a25;
   border:1px solid #21453d;
-  border-radius:28px;
-  padding:30px 22px;
-  text-align:center;
   box-shadow:0 20px 60px #0008;
+  text-align:center;
 }
 
 .logo{
@@ -55,7 +54,6 @@ button{cursor:pointer}
   background:#f6c64b;
   color:#071a17;
   font-size:38px;
-  box-shadow:0 10px 30px #f6c64b33;
 }
 
 .loginBox h1{
@@ -65,14 +63,13 @@ button{cursor:pointer}
 
 .sub{
   color:#9bb5af;
-  margin-bottom:28px;
 }
 
 .loginBtn{
   width:100%;
   border:0;
-  padding:15px;
   border-radius:14px;
+  padding:15px;
   margin-top:12px;
   font-weight:bold;
 }
@@ -88,16 +85,16 @@ button{cursor:pointer}
 }
 
 .small{
+  margin-top:18px;
+  color:#78958f;
   font-size:12px;
-  color:#75938d;
-  margin-top:20px;
 }
 
-/* SETUP */
+/* FORM */
 #setupScreen{
   display:none;
   min-height:100vh;
-  padding:22px;
+  padding:20px;
 }
 
 .setupCard{
@@ -111,12 +108,40 @@ button{cursor:pointer}
   margin-top:0;
 }
 
+.field{
+  margin-top:15px;
+}
+
+.field label{
+  display:block;
+  margin-bottom:7px;
+  color:#9bb5af;
+  font-size:13px;
+}
+
+.field input,
+.field textarea,
+.field select{
+  width:100%;
+  padding:14px;
+  border-radius:12px;
+  border:1px solid #31564e;
+  background:#071a17;
+  color:#fff;
+  outline:none;
+}
+
+.field textarea{
+  min-height:90px;
+  resize:none;
+}
+
 .photoBox{
   width:100px;
   height:100px;
+  margin:15px auto;
   border-radius:50%;
   background:#183b34;
-  margin:15px auto;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -130,40 +155,12 @@ button{cursor:pointer}
   object-fit:cover;
 }
 
-.field{
-  margin-top:14px;
-}
-
-.field label{
-  display:block;
-  color:#9bb5af;
-  font-size:13px;
-  margin-bottom:7px;
-}
-
-.field input,
-.field textarea,
-.field select{
-  width:100%;
-  padding:14px;
-  border-radius:12px;
-  border:1px solid #31564e;
-  background:#071a17;
-  color:white;
-  outline:none;
-}
-
-.field textarea{
-  resize:none;
-  min-height:90px;
-}
-
 #createProfile{
   width:100%;
-  margin-top:20px;
-  padding:15px;
   border:0;
   border-radius:14px;
+  padding:15px;
+  margin-top:20px;
   background:#f6c64b;
   color:#071a17;
   font-weight:bold;
@@ -178,10 +175,9 @@ button{cursor:pointer}
 
 .topbar{
   padding:18px;
+  border-bottom:1px solid #173a33;
   display:flex;
   justify-content:space-between;
-  align-items:center;
-  border-bottom:1px solid #173a33;
 }
 
 .topbar h2{
@@ -199,11 +195,11 @@ button{cursor:pointer}
 }
 
 .card{
-  background:#0d2a25;
-  border:1px solid #21453d;
-  border-radius:20px;
   padding:18px;
   margin-bottom:14px;
+  border-radius:20px;
+  background:#0d2a25;
+  border:1px solid #21453d;
 }
 
 .empty{
@@ -212,6 +208,7 @@ button{cursor:pointer}
   padding:45px 10px;
 }
 
+/* NAV */
 .bottomNav{
   position:fixed;
   bottom:0;
@@ -225,12 +222,12 @@ button{cursor:pointer}
   display:flex;
   justify-content:space-around;
   align-items:center;
-  z-index:20;
+  z-index:50;
 }
 
 .navBtn{
-  background:none;
   border:0;
+  background:none;
   color:#75938d;
   display:flex;
   flex-direction:column;
@@ -249,10 +246,10 @@ button{cursor:pointer}
 
 /* PROFILE */
 .profileCover{
-  background:linear-gradient(135deg,#123b33,#071a17);
-  border-radius:22px;
   padding:25px 18px;
+  border-radius:22px;
   text-align:center;
+  background:linear-gradient(135deg,#123b33,#071a17);
 }
 
 .avatar{
@@ -287,19 +284,29 @@ button{cursor:pointer}
 .actionBtn{
   width:100%;
   padding:13px;
+  margin-top:10px;
   border-radius:12px;
   border:1px solid #31564e;
   background:#102f29;
-  color:white;
-  margin-top:10px;
+  color:#fff;
 }
 
 .danger{
   color:#ff7777;
 }
 
-#recaptcha-container{
+#phoneArea{
+  display:none;
+}
+
+#errorBox{
+  display:none;
   margin-top:12px;
+  padding:12px;
+  border-radius:10px;
+  background:#4b1d1d;
+  color:#ffb5b5;
+  font-size:13px;
 }
 </style>
 </head>
@@ -311,61 +318,59 @@ button{cursor:pointer}
 <!-- LOGIN -->
 <section id="loginScreen">
 
-  <div class="loginBox">
+<div class="loginBox">
 
-    <div class="logo">💬</div>
+<div class="logo">💬</div>
 
-    <h1>WeChat</h1>
+<h1>WeChat</h1>
 
-    <div class="sub">
-      Connect. Chat. Share.
-    </div>
+<p class="sub">Connect. Chat. Share.</p>
 
-    <button id="googleLogin" class="loginBtn google">
-      🔵 Continue with Google
-    </button>
+<button id="googleLogin" class="loginBtn google">
+🔵 Continue with Google
+</button>
 
-    <button id="phoneLogin" class="loginBtn phone">
-      📱 Continue with Phone
-    </button>
+<button id="phoneLogin" class="loginBtn phone">
+📱 Continue with Phone
+</button>
 
-    <div id="phoneArea" style="display:none">
+<div id="phoneArea">
 
-      <div class="field">
-        <label>Phone number</label>
-        <input
-          id="phoneNumber"
-          type="tel"
-          placeholder="+91XXXXXXXXXX"
-        >
-      </div>
+<div class="field">
+<label>Phone number</label>
+<input
+id="phoneNumber"
+type="tel"
+placeholder="+91XXXXXXXXXX">
+</div>
 
-      <div id="recaptcha-container"></div>
+<div id="recaptcha-container"></div>
 
-      <button id="sendOtp" class="loginBtn phone">
-        Send OTP
-      </button>
+<button id="sendOtp" class="loginBtn phone">
+Send OTP
+</button>
 
-      <div class="field">
-        <label>OTP</label>
-        <input
-          id="otp"
-          type="number"
-          placeholder="Enter OTP"
-        >
-      </div>
+<div class="field">
+<label>OTP</label>
+<input
+id="otp"
+type="number"
+placeholder="Enter OTP">
+</div>
 
-      <button id="verifyOtp" class="loginBtn google">
-        Verify OTP
-      </button>
+<button id="verifyOtp" class="loginBtn google">
+Verify OTP
+</button>
 
-    </div>
+</div>
 
-    <div class="small">
-      Your account is secured with Firebase.
-    </div>
+<div id="errorBox"></div>
 
-  </div>
+<p class="small">
+Secure login powered by Firebase
+</p>
+
+</div>
 
 </section>
 
@@ -373,52 +378,54 @@ button{cursor:pointer}
 <!-- PROFILE SETUP -->
 <section id="setupScreen">
 
-  <div class="setupCard">
+<div class="setupCard">
 
-    <h2>Create your profile</h2>
+<h2>Create your profile</h2>
 
-    <p class="sub">
-      Complete your profile before entering WeChat.
-    </p>
+<p class="sub">
+Complete your profile to enter WeChat.
+</p>
 
-    <div id="photoPreview" class="photoBox">
-      👤
-    </div>
+<div id="photoPreview" class="photoBox">
+👤
+</div>
 
-    <div class="field">
-      <label>Profile photo</label>
-      <input id="photoInput" type="file" accept="image/*">
-    </div>
+<div class="field">
+<label>Profile photo</label>
+<input id="photoInput" type="file" accept="image/*">
+</div>
 
-    <div class="field">
-      <label>Full name</label>
-      <input id="fullName" placeholder="Your name">
-    </div>
+<div class="field">
+<label>Full name</label>
+<input id="fullName" placeholder="Your name">
+</div>
 
-    <div class="field">
-      <label>Nickname</label>
-      <input id="nickname" placeholder="@nickname">
-    </div>
+<div class="field">
+<label>Nickname</label>
+<input id="nickname" placeholder="@nickname">
+</div>
 
-    <div class="field">
-      <label>Bio</label>
-      <textarea id="bioInput" placeholder="Tell something about yourself"></textarea>
-    </div>
+<div class="field">
+<label>Bio</label>
+<textarea id="bioInput"
+placeholder="Tell something about yourself"></textarea>
+</div>
 
-    <div class="field">
-      <label>Account privacy</label>
+<div class="field">
+<label>Account privacy</label>
 
-      <select id="privacy">
-        <option value="public">Public</option>
-        <option value="private">Private</option>
-      </select>
-    </div>
+<select id="privacy">
+<option value="public">Public</option>
+<option value="private">Private</option>
+</select>
 
-    <button id="createProfile">
-      Create Profile
-    </button>
+</div>
 
-  </div>
+<button id="createProfile">
+Create Profile
+</button>
+
+</div>
 
 </section>
 
@@ -426,160 +433,160 @@ button{cursor:pointer}
 <!-- MAIN APP -->
 <section id="mainApp">
 
-  <div class="topbar">
-    <h2 id="pageTitle">Chats</h2>
-    <div>💬</div>
-  </div>
+<div class="topbar">
+<h2 id="pageTitle">Chats</h2>
+<div>💬</div>
+</div>
 
 
-  <!-- CHATS -->
-  <div id="chatsPage" class="page active">
+<!-- CHATS -->
+<div id="chatsPage" class="page active">
 
-    <div class="card">
-      <h3>💬 Chats</h3>
-      <p class="sub">
-        Your conversations will appear here.
-      </p>
-    </div>
+<div class="card">
+<h3>💬 Chats</h3>
+<p class="sub">
+Your conversations will appear here.
+</p>
+</div>
 
-    <div class="empty">
-      No chats yet.
-    </div>
+<div class="empty">
+No chats yet.
+</div>
 
-  </div>
-
-
-  <!-- STORIES -->
-  <div id="storiesPage" class="page">
-
-    <div class="card">
-      <h3>⭕ Stories</h3>
-      <p class="sub">
-        24-hour stories will appear here.
-      </p>
-    </div>
-
-    <div class="empty">
-      No stories yet.
-    </div>
-
-  </div>
+</div>
 
 
-  <!-- POSTS -->
-  <div id="postsPage" class="page">
+<!-- STORIES -->
+<div id="storiesPage" class="page">
 
-    <div class="card">
-      <h3>📝 Posts</h3>
-      <p class="sub">
-        Share photos, videos and updates.
-      </p>
-    </div>
+<div class="card">
+<h3>⭕ Stories</h3>
+<p class="sub">
+Share photos and videos for 24 hours.
+</p>
+</div>
 
-    <div class="empty">
-      No posts yet.
-    </div>
+<div class="empty">
+No stories yet.
+</div>
 
-  </div>
-
-
-  <!-- CHANNELS -->
-  <div id="channelsPage" class="page">
-
-    <div class="card">
-      <h3>📢 Channels</h3>
-      <p class="sub">
-        Follow and create channels.
-      </p>
-    </div>
-
-    <div class="empty">
-      No channels yet.
-    </div>
-
-  </div>
+</div>
 
 
-  <!-- PROFILE -->
-  <div id="profilePage" class="page">
+<!-- POSTS -->
+<div id="postsPage" class="page">
 
-    <div class="profileCover">
+<div class="card">
+<h3>📝 Posts</h3>
+<p class="sub">
+Share photos, videos and updates.
+</p>
+</div>
 
-      <div id="profileAvatar" class="avatar">
-        N
-      </div>
+<div class="empty">
+No posts yet.
+</div>
 
-      <h2 id="profileName">Name</h2>
-
-      <div id="profileNickname" class="nickname">
-        @nickname
-      </div>
-
-      <p id="profileBio" class="bio">
-        Hey! I'm using WeChat.
-      </p>
-
-    </div>
-
-    <div class="card">
-
-      <p>
-        <b>Name</b><br>
-        <span id="rowName">-</span>
-      </p>
-
-      <p>
-        <b>Nickname</b><br>
-        <span id="rowNickname">-</span>
-      </p>
-
-      <p>
-        <b>Privacy</b><br>
-        <span id="rowPrivacy">-</span>
-      </p>
-
-      <button id="editProfile" class="actionBtn">
-        ✏️ Edit Profile
-      </button>
-
-      <button id="logoutBtn" class="actionBtn danger">
-        🚪 Logout
-      </button>
-
-    </div>
-
-  </div>
+</div>
 
 
-  <!-- NAVIGATION -->
-  <nav class="bottomNav">
+<!-- CHANNELS -->
+<div id="channelsPage" class="page">
 
-    <button class="navBtn active" data-page="chats">
-      <span>💬</span>
-      Chats
-    </button>
+<div class="card">
+<h3>📢 Channels</h3>
+<p class="sub">
+Follow and create channels.
+</p>
+</div>
 
-    <button class="navBtn" data-page="stories">
-      <span>⭕</span>
-      Stories
-    </button>
+<div class="empty">
+No channels yet.
+</div>
 
-    <button class="navBtn" data-page="posts">
-      <span>📝</span>
-      Posts
-    </button>
+</div>
 
-    <button class="navBtn" data-page="channels">
-      <span>📢</span>
-      Channels
-    </button>
 
-    <button class="navBtn" data-page="profile">
-      <span>👤</span>
-      Profile
-    </button>
+<!-- PROFILE -->
+<div id="profilePage" class="page">
 
-  </nav>
+<div class="profileCover">
+
+<div id="profileAvatar" class="avatar">
+N
+</div>
+
+<h2 id="profileName">Name</h2>
+
+<div id="profileNickname" class="nickname">
+@nickname
+</div>
+
+<p id="profileBio" class="bio">
+Hey! I'm using WeChat.
+</p>
+
+</div>
+
+<div class="card">
+
+<p>
+<b>Name</b><br>
+<span id="rowName">-</span>
+</p>
+
+<p>
+<b>Nickname</b><br>
+<span id="rowNickname">-</span>
+</p>
+
+<p>
+<b>Privacy</b><br>
+<span id="rowPrivacy">-</span>
+</p>
+
+<button id="editProfile" class="actionBtn">
+✏️ Edit Profile
+</button>
+
+<button id="logoutBtn" class="actionBtn danger">
+🚪 Logout
+</button>
+
+</div>
+
+</div>
+
+
+<!-- NAVIGATION -->
+<nav class="bottomNav">
+
+<button class="navBtn active" data-page="chats">
+<span>💬</span>
+Chats
+</button>
+
+<button class="navBtn" data-page="stories">
+<span>⭕</span>
+Stories
+</button>
+
+<button class="navBtn" data-page="posts">
+<span>📝</span>
+Posts
+</button>
+
+<button class="navBtn" data-page="channels">
+<span>📢</span>
+Channels
+</button>
+
+<button class="navBtn" data-page="profile">
+<span>👤</span>
+Profile
+</button>
+
+</nav>
 
 </section>
 
@@ -593,52 +600,55 @@ import { initializeApp }
 from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
 
 import {
-  getAuth,
-  GoogleAuthProvider,
-  signInWithPopup,
-  onAuthStateChanged,
-  RecaptchaVerifier,
-  signInWithPhoneNumber,
-  signOut
+getAuth,
+GoogleAuthProvider,
+signInWithPopup,
+onAuthStateChanged,
+RecaptchaVerifier,
+signInWithPhoneNumber,
+signOut
 }
 from "https://www.gstatic.com/firebasejs/12.2.1/firebase-auth.js";
 
 import {
-  getFirestore,
-  doc,
-  getDoc,
-  setDoc,
-  serverTimestamp
+getFirestore,
+doc,
+getDoc,
+setDoc,
+serverTimestamp
 }
 from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
 
 
-/* =========================
-   FIREBASE CONFIG
-========================= */
+/* FIREBASE CONFIG */
 
 const firebaseConfig = {
 
-  apiKey: "AIzaSyCrCF4OlGjifVdHaMUDClxDSEtbeqJ_oTU",
+apiKey:
+"AIzaSyCrCF4OlGjifVdHaMUDClxDSEtbeqJ_oTU",
 
-  authDomain: "wechat-48b99.firebaseapp.com",
+authDomain:
+"wechat-48b99.firebaseapp.com",
 
-  projectId: "wechat-48b99",
+projectId:
+"wechat-48b99",
 
-  storageBucket: "wechat-48b99.firebasestorage.app",
+storageBucket:
+"wechat-48b99.firebasestorage.app",
 
-  messagingSenderId: "66227146008",
+messagingSenderId:
+"66227146008",
 
-  appId: "1:66227146008:web:2010e92bde94fed5d5626d",
+appId:
+"1:66227146008:web:2010e92bde94fed5d5626d",
 
-  measurementId: "G-6SNKPWWVFF"
+measurementId:
+"G-6SNKPWWVFF"
 
 };
 
 
-/* =========================
-   INITIALIZE
-========================= */
+/* INITIALIZE */
 
 const app = initializeApp(firebaseConfig);
 
@@ -646,590 +656,644 @@ const auth = getAuth(app);
 
 const db = getFirestore(app);
 
-const googleProvider = new GoogleAuthProvider();
+const googleProvider =
+new GoogleAuthProvider();
 
-
-/* =========================
-   ELEMENTS
-========================= */
-
-const $ = id => document.getElementById(id);
 
 let currentUser = null;
 let confirmationResult = null;
+let recaptchaVerifier = null;
 let profilePhoto = "";
 
 
-/* =========================
-   GOOGLE LOGIN
-========================= */
+/* HELPERS */
 
-$("googleLogin").addEventListener("click", async () => {
+const $ = id =>
+document.getElementById(id);
 
-  try {
+function showError(message){
 
-    const result =
-      await signInWithPopup(auth, googleProvider);
+const box = $("errorBox");
 
-    console.log("Google login successful:", result.user);
+box.style.display = "block";
 
-  } catch(error) {
+box.textContent = message;
 
-    console.error(error);
+}
 
-    alert(
-      "Google login failed:\n" +
-      error.message
-    );
+function hideError(){
 
-  }
+$("errorBox").style.display = "none";
 
-});
+}
 
 
-/* =========================
-   PHONE LOGIN BUTTON
-========================= */
+/* GOOGLE LOGIN */
 
-$("phoneLogin").addEventListener("click", () => {
+$("googleLogin").onclick =
+async function(){
 
-  $("phoneArea").style.display = "block";
+hideError();
 
-  setupRecaptcha();
+try{
 
-});
+await signInWithPopup(
+auth,
+googleProvider
+);
+
+}catch(error){
+
+console.error(error);
+
+showError(
+"Google login failed: " +
+error.message
+);
+
+}
+
+};
 
 
-/* =========================
-   RECAPTCHA
-========================= */
+/* SHOW PHONE LOGIN */
 
-let recaptchaReady = false;
+$("phoneLogin").onclick =
+function(){
+
+$("phoneArea").style.display = "block";
+
+setupRecaptcha();
+
+};
+
+
+/* RECAPTCHA */
 
 function setupRecaptcha(){
 
-  if(recaptchaReady) return;
+if(recaptchaVerifier) return;
 
-  window.recaptchaVerifier =
-    new RecaptchaVerifier(
-      auth,
-      "recaptcha-container",
-      {
-        size:"normal"
-      }
-    );
-
-  recaptchaReady = true;
+recaptchaVerifier =
+new RecaptchaVerifier(
+auth,
+"recaptcha-container",
+{
+size:"normal"
+}
+);
 
 }
 
 
-/* =========================
-   SEND OTP
-========================= */
+/* SEND OTP */
 
-$("sendOtp").addEventListener("click", async () => {
+$("sendOtp").onclick =
+async function(){
 
-  let phone =
-  $("phoneNumber").value.trim();
+hideError();
 
-phone = phone.replace(/\s+/g, "");
+const phone =
+$("phoneNumber").value.trim();
 
-if(phone.startsWith("0")){
-  phone = phone.substring(1);
-}
+if(!phone){
 
-if(!phone.startsWith("+91")){
-  phone = "+91" + phone;
-}
+showError(
+"Enter phone number with country code."
+);
 
-if(!/^\+91\d{10}$/.test(phone)){
-  alert("Enter a valid 10-digit Indian phone number.");
-  return;
-  }
-
-  try {
-
-    setupRecaptcha();
-
-    confirmationResult =
-      await signInWithPhoneNumber(
-        auth,
-        phone,
-        window.recaptchaVerifier
-      );
-
-    alert("OTP sent successfully.");
-
-  } catch(error) {
-
-    console.error(error);
-
-    alert(
-      "OTP failed:\n" +
-      error.message
-    );
-
-  }
-
-});
-
-
-/* =========================
-   VERIFY OTP
-========================= */
-
-$("verifyOtp").addEventListener("click", async () => {
-
-  const code =
-    $("otp").value.trim();
-
-  if(!confirmationResult){
-
-    alert("First send OTP.");
-
-    return;
-
-  }
-
-  if(!code){
-
-    alert("Enter OTP.");
-
-    return;
-
-  }
-
-  try {
-
-    await confirmationResult.confirm(code);
-
-    alert("Login successful!");
-
-  } catch(error) {
-
-    console.error(error);
-
-    alert(
-      "Wrong OTP or login failed:\n" +
-      error.message
-    );
-
-  }
-
-});
-
-
-/* =========================
-   AUTH STATE
-========================= */
-
-onAuthStateChanged(auth, async user => {
-
-  if(!user){
-
-    $("loginScreen").style.display = "flex";
-    $("setupScreen").style.display = "none";
-    $("mainApp").style.display = "none";
-
-    return;
-
-  }
-
-  currentUser = user;
-
-  console.log("Logged in:", user.uid);
-
-  await loadUserProfile(user);
-
-});
-
-
-/* =========================
-   LOAD PROFILE
-========================= */
-
-async function loadUserProfile(user){
-
-  try {
-
-    const ref =
-      doc(db, "users", user.uid);
-
-    const snap =
-      await getDoc(ref);
-
-    if(snap.exists()){
-
-      const profile = snap.data();
-
-      openApp(profile);
-
-    }else{
-
-      $("loginScreen").style.display = "none";
-
-      $("mainApp").style.display = "none";
-
-      $("setupScreen").style.display = "block";
-
-      if(user.displayName){
-
-        $("fullName").value =
-          user.displayName;
-
-      }
-
-      if(user.photoURL){
-
-        profilePhoto =
-          user.photoURL;
-
-        $("photoPreview").innerHTML =
-          `<img src="${user.photoURL}">`;
-
-      }
-
-    }
-
-  } catch(error) {
-
-    console.error(error);
-
-    alert(
-      "Profile load error:\n" +
-      error.message
-    );
-
-  }
+return;
 
 }
 
+try{
 
-/* =========================
-   PHOTO
-========================= */
+setupRecaptcha();
 
-$("photoInput").addEventListener(
-  "change",
-  function(){
+confirmationResult =
+await signInWithPhoneNumber(
+auth,
+phone,
+recaptchaVerifier
+);
 
-    const file = this.files[0];
+alert("OTP sent successfully.");
 
-    if(!file) return;
+}catch(error){
 
-    const reader = new FileReader();
+console.error(error);
 
-    reader.onload = function(e){
+showError(
+"OTP error: " +
+error.message
+);
 
-      profilePhoto =
-        e.target.result;
+try{
 
-      $("photoPreview").innerHTML =
-        `<img src="${profilePhoto}">`;
+if(recaptchaVerifier){
 
-    };
+recaptchaVerifier.clear();
 
-    reader.readAsDataURL(file);
+recaptchaVerifier = null;
 
-  }
+}
+
+}catch(e){}
+
+}
+
+};
+
+
+/* VERIFY OTP */
+
+$("verifyOtp").onclick =
+async function(){
+
+hideError();
+
+const otp =
+$("otp").value.trim();
+
+if(!confirmationResult){
+
+showError(
+"First tap Send OTP."
+);
+
+return;
+
+}
+
+if(!otp){
+
+showError(
+"Enter OTP."
+);
+
+return;
+
+}
+
+try{
+
+await confirmationResult.confirm(otp);
+
+}catch(error){
+
+console.error(error);
+
+showError(
+"OTP verification failed: " +
+error.message
+);
+
+}
+
+};
+
+
+/* AUTH STATE */
+
+onAuthStateChanged(
+auth,
+async function(user){
+
+if(!user){
+
+currentUser = null;
+
+$("loginScreen").style.display =
+"flex";
+
+$("setupScreen").style.display =
+"none";
+
+$("mainApp").style.display =
+"none";
+
+return;
+
+}
+
+currentUser = user;
+
+await loadProfile(user);
+
+}
 );
 
 
-/* =========================
-   CREATE PROFILE
-========================= */
+/* LOAD PROFILE */
 
-$("createProfile").addEventListener(
-  "click",
-  async () => {
+async function loadProfile(user){
 
-    if(!currentUser){
+try{
 
-      alert("Please login first.");
+const ref =
+doc(db,"users",user.uid);
 
-      return;
+const snapshot =
+await getDoc(ref);
 
-    }
+if(snapshot.exists()){
 
-    const name =
-      $("fullName").value.trim();
+openApp(snapshot.data());
 
-    let nickname =
-      $("nickname").value.trim();
+}else{
 
-    const bio =
-      $("bioInput").value.trim();
+$("loginScreen").style.display =
+"none";
 
-    const privacy =
-      $("privacy").value;
+$("setupScreen").style.display =
+"block";
 
+$("mainApp").style.display =
+"none";
 
-    if(!name){
+if(user.displayName){
 
-      alert("Enter your name.");
+$("fullName").value =
+user.displayName;
 
-      return;
+}
 
-    }
+if(user.photoURL){
 
-    if(!nickname){
+profilePhoto =
+user.photoURL;
 
-      alert("Create a nickname.");
+$("photoPreview").innerHTML =
+`<img src="${user.photoURL}">`;
 
-      return;
+}
 
-    }
+}
 
-    if(!nickname.startsWith("@")){
+}catch(error){
 
-      nickname = "@" + nickname;
+console.error(error);
 
-    }
-
-
-    const profile = {
-
-      uid: currentUser.uid,
-
-      name: name,
-
-      nickname: nickname,
-
-      bio:
-        bio ||
-        "Hey! I'm using WeChat.",
-
-      privacy: privacy,
-
-      photo: profilePhoto || "",
-
-      email:
-        currentUser.email || "",
-
-      phone:
-        currentUser.phoneNumber || "",
-
-      createdAt:
-        serverTimestamp(),
-
-      updatedAt:
-        serverTimestamp()
-
-    };
-
-
-    try {
-
-      await setDoc(
-        doc(db, "users", currentUser.uid),
-        profile,
-        { merge:true }
-      );
-
-      openApp(profile);
-
-    } catch(error) {
-
-      console.error(error);
-
-      alert(
-        "Profile save failed:\n" +
-        error.message
-      );
-
-    }
-
-  }
+showError(
+"Profile error: " +
+error.message
 );
 
+}
 
-/* =========================
-   OPEN APP
-========================= */
+}
+
+
+/* PHOTO */
+
+$("photoInput").onchange =
+function(){
+
+const file =
+this.files[0];
+
+if(!file) return;
+
+if(file.size > 800000){
+
+alert(
+"Photo is too large. Choose a smaller image."
+);
+
+this.value = "";
+
+return;
+
+}
+
+const reader =
+new FileReader();
+
+reader.onload =
+function(event){
+
+profilePhoto =
+event.target.result;
+
+$("photoPreview").innerHTML =
+`<img src="${profilePhoto}">`;
+
+};
+
+reader.readAsDataURL(file);
+
+};
+
+
+/* CREATE PROFILE */
+
+$("createProfile").onclick =
+async function(){
+
+hideError();
+
+if(!currentUser){
+
+showError(
+"Please login first."
+);
+
+return;
+
+}
+
+const name =
+$("fullName").value.trim();
+
+let nickname =
+$("nickname").value.trim();
+
+const bio =
+$("bioInput").value.trim();
+
+const privacy =
+$("privacy").value;
+
+
+if(!name){
+
+showError("Enter your name.");
+
+return;
+
+}
+
+if(!nickname){
+
+showError(
+"Create a nickname."
+);
+
+return;
+
+}
+
+if(!nickname.startsWith("@")){
+
+nickname =
+"@" + nickname;
+
+}
+
+
+const profile = {
+
+uid:
+currentUser.uid,
+
+name:
+name,
+
+nickname:
+nickname,
+
+bio:
+bio ||
+"Hey! I'm using WeChat.",
+
+privacy:
+privacy,
+
+photo:
+profilePhoto || "",
+
+email:
+currentUser.email || "",
+
+phone:
+currentUser.phoneNumber || "",
+
+createdAt:
+serverTimestamp(),
+
+updatedAt:
+serverTimestamp()
+
+};
+
+
+try{
+
+await setDoc(
+doc(db,"users",currentUser.uid),
+profile,
+{merge:true}
+);
+
+openApp(profile);
+
+}catch(error){
+
+console.error(error);
+
+showError(
+"Could not save profile: " +
+error.message
+);
+
+}
+
+};
+
+
+/* OPEN APP */
 
 function openApp(profile){
 
-  $("loginScreen").style.display = "none";
+$("loginScreen").style.display =
+"none";
 
-  $("setupScreen").style.display = "none";
+$("setupScreen").style.display =
+"none";
 
-  $("mainApp").style.display = "flex";
+$("mainApp").style.display =
+"flex";
 
-  loadProfile(profile);
-
-}
-
-
-/* =========================
-   LOAD PROFILE UI
-========================= */
-
-function loadProfile(profile){
-
-  $("profileName").textContent =
-    profile.name;
-
-  $("profileNickname").textContent =
-    profile.nickname;
-
-  $("profileBio").textContent =
-    profile.bio;
-
-  $("rowName").textContent =
-    profile.name;
-
-  $("rowNickname").textContent =
-    profile.nickname;
-
-  $("rowPrivacy").textContent =
-    profile.privacy === "private"
-      ? "Private"
-      : "Public";
-
-
-  if(profile.photo){
-
-    $("profileAvatar").innerHTML =
-      `<img src="${profile.photo}">`;
-
-  }else{
-
-    $("profileAvatar").textContent =
-      profile.name
-        .charAt(0)
-        .toUpperCase();
-
-  }
+loadProfileUI(profile);
 
 }
 
 
-/* =========================
-   NAVIGATION
-========================= */
+/* PROFILE UI */
+
+function loadProfileUI(profile){
+
+$("profileName").textContent =
+profile.name || "";
+
+$("profileNickname").textContent =
+profile.nickname || "";
+
+$("profileBio").textContent =
+profile.bio || "";
+
+$("rowName").textContent =
+profile.name || "";
+
+$("rowNickname").textContent =
+profile.nickname || "";
+
+$("rowPrivacy").textContent =
+profile.privacy === "private"
+? "Private"
+: "Public";
+
+
+if(profile.photo){
+
+$("profileAvatar").innerHTML =
+`<img src="${profile.photo}">`;
+
+}else{
+
+$("profileAvatar").textContent =
+(profile.name || "U")
+.charAt(0)
+.toUpperCase();
+
+}
+
+}
+
+
+/* NAVIGATION */
 
 document
 .querySelectorAll(".navBtn")
-.forEach(button => {
+.forEach(function(button){
 
-  button.addEventListener(
-    "click",
-    () => {
+button.onclick =
+function(){
 
-      const page =
-        button.dataset.page;
+const page =
+this.dataset.page;
 
-      document
-      .querySelectorAll(".page")
-      .forEach(p =>
-        p.classList.remove("active")
-      );
+document
+.querySelectorAll(".page")
+.forEach(function(p){
 
-      $(page + "Page")
-        .classList.add("active");
+p.classList.remove("active");
 
+});
 
-      document
-      .querySelectorAll(".navBtn")
-      .forEach(b =>
-        b.classList.remove("active")
-      );
-
-      button.classList.add("active");
+$(page+"Page")
+.classList.add("active");
 
 
-      const titles = {
+document
+.querySelectorAll(".navBtn")
+.forEach(function(b){
 
-        chats:"Chats",
+b.classList.remove("active");
 
-        stories:"Stories",
+});
 
-        posts:"Posts",
+this.classList.add("active");
 
-        channels:"Channels",
 
-        profile:"Profile"
+const titles = {
 
-      };
+chats:"Chats",
+stories:"Stories",
+posts:"Posts",
+channels:"Channels",
+profile:"Profile"
 
-      $("pageTitle").textContent =
-        titles[page];
+};
 
-    }
+$("pageTitle").textContent =
+titles[page];
 
-  );
+};
 
 });
 
 
-/* =========================
-   EDIT PROFILE
-========================= */
+/* EDIT PROFILE */
 
-$("editProfile").addEventListener(
-  "click",
-  async () => {
+$("editProfile").onclick =
+async function(){
 
-    if(!currentUser) return;
+if(!currentUser) return;
 
-    const snap =
-      await getDoc(
-        doc(db, "users", currentUser.uid)
-      );
+try{
 
-    if(!snap.exists()) return;
-
-    const profile = snap.data();
-
-    $("mainApp").style.display = "none";
-
-    $("setupScreen").style.display = "block";
-
-    $("fullName").value =
-      profile.name || "";
-
-    $("nickname").value =
-      profile.nickname || "";
-
-    $("bioInput").value =
-      profile.bio || "";
-
-    $("privacy").value =
-      profile.privacy || "public";
-
-    profilePhoto =
-      profile.photo || "";
-
-    if(profilePhoto){
-
-      $("photoPreview").innerHTML =
-        `<img src="${profilePhoto}">`;
-
-    }
-
-  }
+const snapshot =
+await getDoc(
+doc(db,"users",currentUser.uid)
 );
 
+if(!snapshot.exists()) return;
 
-/* =========================
-   LOGOUT
-========================= */
+const profile =
+snapshot.data();
 
-$("logoutBtn").addEventListener(
-  "click",
-  async () => {
+$("mainApp").style.display =
+"none";
 
-    if(
-      confirm("Logout from WeChat?")
-    ){
+$("setupScreen").style.display =
+"block";
 
-      await signOut(auth);
+$("fullName").value =
+profile.name || "";
 
-    }
+$("nickname").value =
+profile.nickname || "";
 
-  }
+$("bioInput").value =
+profile.bio || "";
+
+$("privacy").value =
+profile.privacy || "public";
+
+profilePhoto =
+profile.photo || "";
+
+if(profilePhoto){
+
+$("photoPreview").innerHTML =
+`<img src="${profilePhoto}">`;
+
+}
+
+}catch(error){
+
+showError(
+"Could not load profile."
 );
+
+}
+
+};
+
+
+/* LOGOUT */
+
+$("logoutBtn").onclick =
+async function(){
+
+if(!confirm("Logout from WeChat?"))
+return;
+
+try{
+
+await signOut(auth);
+
+}catch(error){
+
+showError(
+"Logout failed: " +
+error.message
+);
+
+}
+
+};
 
 </script>
 
