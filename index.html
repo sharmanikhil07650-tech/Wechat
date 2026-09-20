@@ -2,186 +2,290 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aanya ❤️</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>WeChat</title>
 
 <style>
 *{box-sizing:border-box}
-
 body{
   margin:0;
-  height:100vh;
   font-family:Arial,sans-serif;
   background:#0b141a;
-  overflow:hidden;
+  color:#fff;
 }
-
 .app{
   max-width:600px;
   height:100vh;
   margin:auto;
+  background:#f5f7f8;
   display:flex;
   flex-direction:column;
-  background:#efe7dd;
+  overflow:hidden;
+}
+
+/* LOGIN */
+.login{
+  height:100%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:30px;
+  background:#202c33;
+}
+.logo{
+  width:85px;
+  height:85px;
+  border-radius:25px;
+  background:#00a884;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:42px;
+  margin-bottom:18px;
+}
+.login h1{margin:0 0 8px}
+.login p{
+  color:#b8c7cc;
+  text-align:center;
+}
+.login button{
+  width:100%;
+  max-width:330px;
+  padding:15px;
+  margin-top:10px;
+  border:0;
+  border-radius:25px;
+  font-size:16px;
+  font-weight:bold;
+}
+.google{background:#fff;color:#222}
+.phone{background:#00a884;color:#fff}
+
+/* MAIN */
+.main{
+  display:none;
+  height:100%;
+  flex-direction:column;
 }
 
 /* HEADER */
 .header{
-  height:70px;
+  height:65px;
   background:#202c33;
-  color:white;
   display:flex;
   align-items:center;
-  padding:8px 12px;
-  gap:12px;
+  padding:0 15px;
+}
+.header h2{
+  margin:0;
+  flex:1;
+}
+.header button{
+  border:0;
+  background:none;
+  color:white;
+  font-size:22px;
 }
 
-.back{
-  font-size:30px;
+/* CONTENT */
+.content{
+  flex:1;
+  overflow-y:auto;
+  color:#111;
+  padding-bottom:65px;
 }
 
+.page{display:none}
+.page.active{display:block}
+
+/* SEARCH */
+.search{
+  padding:10px;
+  background:#202c33;
+}
+.search input{
+  width:100%;
+  padding:11px 15px;
+  border:0;
+  border-radius:20px;
+  outline:0;
+}
+
+/* CHAT LIST */
+.chat{
+  display:flex;
+  align-items:center;
+  padding:13px;
+  background:#fff;
+  border-bottom:1px solid #ddd;
+}
+.chat:active{background:#eee}
 .avatar{
-  width:46px;
-  height:46px;
+  width:50px;
+  height:50px;
   border-radius:50%;
-  background:linear-gradient(135deg,#ff7eb3,#ff758c);
+  background:#00a884;
   display:flex;
   align-items:center;
   justify-content:center;
+  color:white;
   font-size:23px;
+  margin-right:12px;
+}
+.chat-info{flex:1}
+.chat-name{font-weight:bold}
+.last{
+  color:#777;
+  font-size:13px;
+  margin-top:5px;
 }
 
-.info{
-  flex:1;
-}
-
-.name{
-  font-size:17px;
-  font-weight:bold;
-}
-
-.status{
-  font-size:12px;
-  color:#b8c7cc;
-  margin-top:3px;
-}
-
-.head-icons{
-  font-size:20px;
-}
-
-/* CHAT */
-.chat{
-  flex:1;
-  overflow-y:auto;
-  padding:15px 10px;
-  background-color:#efe7dd;
-  background-image:
-    radial-gradient(#d6ccc1 1px,transparent 1px);
-  background-size:18px 18px;
-}
-
-.message{
-  max-width:78%;
-  padding:8px 9px;
-  margin:6px 0;
-  border-radius:8px;
-  font-size:15px;
-  line-height:1.4;
-  word-wrap:break-word;
-}
-
-.received{
-  background:#fff;
-  margin-right:auto;
-  border-top-left-radius:2px;
-}
-
-.sent{
-  background:#d9fdd3;
-  margin-left:auto;
-  border-top-right-radius:2px;
-}
-
-.time{
-  float:right;
-  font-size:10px;
-  color:#667781;
-  margin-left:8px;
-  margin-top:6px;
-}
-
-.tick{
-  color:#2196d2;
-}
-
-/* TYPING */
-.typing{
-  display:none;
-  width:65px;
-  padding:9px;
+/* STORIES */
+.story-row{
+  display:flex;
+  gap:15px;
+  padding:15px;
+  overflow-x:auto;
   background:white;
-  border-radius:8px;
+}
+.story{
+  min-width:65px;
+  text-align:center;
+  font-size:12px;
+}
+.story .avatar{
+  width:58px;
+  height:58px;
+  margin:auto auto 5px;
+  border:3px solid #00a884;
 }
 
-.dot{
-  display:inline-block;
-  width:6px;
-  height:6px;
-  margin:0 2px;
-  background:#777;
+/* POSTS */
+.post{
+  background:white;
+  margin-bottom:10px;
+  padding:15px;
+}
+.post-head{
+  display:flex;
+  align-items:center;
+}
+.post-text{
+  margin:12px 0;
+  line-height:1.5;
+}
+.post-actions{
+  display:flex;
+  gap:20px;
+  border-top:1px solid #eee;
+  padding-top:10px;
+}
+.post-actions button{
+  border:0;
+  background:none;
+  font-size:15px;
+}
+
+/* CHANNELS */
+.channel{
+  background:white;
+  margin-bottom:8px;
+  padding:15px;
+  display:flex;
+  align-items:center;
+}
+.channel-info{flex:1}
+.follow{
+  border:0;
+  background:#00a884;
+  color:#fff;
+  padding:8px 15px;
+  border-radius:18px;
+}
+
+/* PROFILE */
+.profile{
+  text-align:center;
+  padding:25px;
+  background:white;
+}
+.profile .big-avatar{
+  width:90px;
+  height:90px;
   border-radius:50%;
-  animation:bounce 1s infinite;
+  margin:auto;
+  background:#00a884;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:40px;
+}
+.profile h2{margin-bottom:5px}
+.profile p{color:#777}
+.profile button{
+  width:100%;
+  padding:13px;
+  margin-top:10px;
+  border:0;
+  border-radius:8px;
+  background:#eee;
 }
 
-.dot:nth-child(2){animation-delay:.15s}
-.dot:nth-child(3){animation-delay:.3s}
-
-@keyframes bounce{
-  0%,60%,100%{transform:translateY(0)}
-  30%{transform:translateY(-5px)}
-}
-
-/* INPUT */
-.input-area{
-  min-height:62px;
+/* BOTTOM NAV */
+.nav{
+  height:65px;
   background:#202c33;
   display:flex;
+  justify-content:space-around;
   align-items:center;
-  gap:7px;
-  padding:8px;
 }
+.nav button{
+  border:0;
+  background:none;
+  color:#aeb9bd;
+  font-size:12px;
+}
+.nav button span{
+  display:block;
+  font-size:22px;
+  margin-bottom:2px;
+}
+.nav button.active{color:#00a884}
 
-.input-box{
-  flex:1;
+/* MODAL */
+.modal{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.6);
+  align-items:center;
+  justify-content:center;
+}
+.modal-box{
+  width:90%;
+  max-width:400px;
   background:white;
-  border-radius:25px;
-  display:flex;
-  align-items:center;
-  padding:0 14px;
+  color:#111;
+  padding:20px;
+  border-radius:15px;
 }
-
-.emoji{
-  font-size:21px;
-  margin-right:7px;
-}
-
-input{
+.modal-box input,
+.modal-box textarea{
   width:100%;
-  border:0;
-  outline:0;
-  font-size:15px;
-  padding:12px 0;
+  padding:12px;
+  margin:7px 0;
+  border:1px solid #ddd;
+  border-radius:8px;
 }
-
-.send{
-  width:46px;
-  height:46px;
+.modal-box button{
+  width:100%;
+  padding:12px;
   border:0;
-  border-radius:50%;
+  border-radius:8px;
   background:#00a884;
   color:white;
-  font-size:21px;
+  margin-top:8px;
 }
 </style>
 </head>
@@ -190,75 +294,227 @@ input{
 
 <div class="app">
 
+<!-- LOGIN -->
+<div class="login" id="loginPage">
+  <div class="logo">💬</div>
+  <h1>WeChat</h1>
+  <p>Chat, connect, share and call.</p>
+
+  <button class="google" onclick="login()">🔵 Continue with Google</button>
+  <button class="phone" onclick="login()">📱 Continue with Phone</button>
+</div>
+
+<!-- MAIN APP -->
+<div class="main" id="mainApp">
+
   <div class="header">
-    <div class="back">‹</div>
-
-    <div class="avatar">❤️</div>
-
-    <div class="info">
-      <div class="name">Aanya ❤️</div>
-      <div class="status" id="status">online</div>
-    </div>
-
-    <div class="head-icons">📹 &nbsp;☎️</div>
+    <h2 id="pageTitle">Chats</h2>
+    <button onclick="openCreate()">＋</button>
   </div>
 
+  <div class="content">
 
-  <div class="chat" id="chat">
+    <!-- CHATS -->
+    <section class="page active" id="chatsPage">
+      <div class="search">
+        <input placeholder="🔍 Search chats">
+      </div>
 
-    <div class="message received">
-      Heyy 😊❤️
-      <span class="time">9:30 PM</span>
-    </div>
+      <div class="chat" onclick="openChat('Aanya')">
+        <div class="avatar">❤️</div>
+        <div class="chat-info">
+          <div class="chat-name">Aanya</div>
+          <div class="last">Hey! 👋</div>
+        </div>
+      </div>
 
-    <div class="message received">
-      Toh bhai... ab hum officially dating kar rahe hain? 😳🙈
-      <span class="time">9:30 PM</span>
-    </div>
+      <div class="chat" onclick="openChat('Rahul')">
+        <div class="avatar">R</div>
+        <div class="chat-info">
+          <div class="chat-name">Rahul</div>
+          <div class="last">See you tomorrow.</div>
+        </div>
+      </div>
+    </section>
 
-    <div class="typing" id="typing">
-      <span class="dot"></span>
-      <span class="dot"></span>
-      <span class="dot"></span>
-    </div>
+    <!-- STORIES -->
+    <section class="page" id="storiesPage">
+      <div class="story-row">
+        <div class="story">
+          <div class="avatar">＋</div>
+          Your story
+        </div>
+
+        <div class="story">
+          <div class="avatar">❤️</div>
+          Aanya
+        </div>
+
+        <div class="story">
+          <div class="avatar">R</div>
+          Rahul
+        </div>
+
+        <div class="story">
+          <div class="avatar">S</div>
+          Sam
+        </div>
+      </div>
+
+      <div class="post">
+        <b>Stories</b>
+        <p>Tap "Your story" to add a photo or video.</p>
+      </div>
+    </section>
+
+    <!-- POSTS -->
+    <section class="page" id="postsPage">
+
+      <div class="post">
+        <div class="post-head">
+          <div class="avatar">N</div>
+          <b>Nicky</b>
+        </div>
+
+        <div class="post-text">
+          Welcome to my WeChat! 🚀
+        </div>
+
+        <div class="post-actions">
+          <button onclick="likePost(this)">❤️ Like</button>
+          <button>💬 Comment</button>
+          <button>↗️ Share</button>
+        </div>
+      </div>
+
+      <div class="post">
+        <div class="post-head">
+          <div class="avatar">R</div>
+          <b>Rahul</b>
+        </div>
+
+        <div class="post-text">
+          What's everyone doing today? 😄
+        </div>
+
+        <div class="post-actions">
+          <button onclick="likePost(this)">❤️ Like</button>
+          <button>💬 Comment</button>
+          <button>↗️ Share</button>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- CHANNELS -->
+    <section class="page" id="channelsPage">
+
+      <div class="channel">
+        <div class="avatar">🎮</div>
+        <div class="channel-info">
+          <b>Gaming Zone</b>
+          <div class="last">12.4K followers</div>
+        </div>
+        <button class="follow" onclick="follow(this)">Follow</button>
+      </div>
+
+      <div class="channel">
+        <div class="avatar">📚</div>
+        <div class="channel-info">
+          <b>Study Hub</b>
+          <div class="last">8.2K followers</div>
+        </div>
+        <button class="follow" onclick="follow(this)">Follow</button>
+      </div>
+
+    </section>
+
+    <!-- PROFILE -->
+    <section class="page" id="profilePage">
+
+      <div class="profile">
+        <div class="big-avatar">N</div>
+        <h2>Nicky</h2>
+        <p>WeChat user</p>
+
+        <button>✏️ Edit Profile</button>
+        <button>🔒 Privacy</button>
+        <button>⚙️ Settings</button>
+        <button onclick="logout()">🚪 Logout</button>
+      </div>
+
+    </section>
 
   </div>
 
+  <!-- NAV -->
+  <div class="nav">
 
-  <div class="input-area">
+    <button class="active" onclick="showPage('chats')">
+      <span>💬</span>Chats
+    </button>
 
-    <div class="input-box">
-      <span class="emoji">😊</span>
+    <button onclick="showPage('stories')">
+      <span>🟢</span>Stories
+    </button>
 
-      <input
-        id="input"
-        type="text"
-        placeholder="Type a message"
-        autocomplete="off"
-      >
-    </div>
+    <button onclick="showPage('posts')">
+      <span>📝</span>Posts
+    </button>
 
-    <button class="send" onclick="sendMessage()">➤</button>
+    <button onclick="showPage('channels')">
+      <span>📢</span>Channels
+    </button>
+
+    <button onclick="showPage('profile')">
+      <span>👤</span>Profile
+    </button>
 
   </div>
 
 </div>
 
+<!-- CREATE MODAL -->
+<div class="modal" id="createModal">
+  <div class="modal-box">
+    <h2>Create</h2>
+
+    <button onclick="createPost()">📝 Create Post</button>
+    <button onclick="createStory()">🟢 Add Story</button>
+    <button onclick="createChannel()">📢 Create Channel</button>
+    <button onclick="closeCreate()">Cancel</button>
+  </div>
+</div>
 
 <script>
 
-const replyGroups = [
+function login(){
+  localStorage.setItem("wechat_logged_in","true");
+  document.getElementById("loginPage").style.display="none";
+  document.getElementById("mainApp").style.display="flex";
+}
 
-  {
-    words:["hi","hello","hey","heyy","hii"],
-    replies:[
-      "Heyy 😊❤️",
-      "Hii ji 😄❤️",
-      "Hello 🙈❤️",
-      "Heyy, kya kar rahe ho? 😊"
-    ]
-  },
+function logout(){
+  localStorage.removeItem("wechat_logged_in");
+  location.reload();
+}
 
-  {
-    words:["kya kar","kar rahe","busy"],
-    replies
+function showPage(page){
+
+  document.querySelectorAll(".page").forEach(p=>{
+    p.classList.remove("active");
+  });
+
+  document.getElementById(page+"Page").classList.add("active");
+
+  const titles={
+    chats:"Chats",
+    stories:"Stories",
+    posts:"Posts",
+    channels:"Channels",
+    profile:"Profile"
+  };
+
+  document.getElementById("pageTitle").textContent=titles[page];
+
+  document.querySelectorAll(".nav button").for
