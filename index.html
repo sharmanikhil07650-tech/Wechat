@@ -3,207 +3,966 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#071a17">
+
 <title>WeChat</title>
 
 <style>
-*{box-sizing:border-box}
+*{
+  box-sizing:border-box;
+  -webkit-tap-highlight-color:transparent;
+}
 
 body{
   margin:0;
-  font-family:Arial,sans-serif;
-  background:#202c33;
+  font-family:Inter,Arial,sans-serif;
+  background:#061311;
+  color:white;
 }
 
-#login{
+button,input,textarea{
+  font-family:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+.app{
+  width:100%;
+  max-width:600px;
   height:100vh;
+  margin:auto;
+  background:#f4f7f6;
+  overflow:hidden;
+  position:relative;
+}
+
+/* ================= LOGIN ================= */
+
+#loginScreen{
+  height:100%;
   display:flex;
-  flex-direction:column;
   align-items:center;
   justify-content:center;
   padding:25px;
-  color:white;
+  background:
+    radial-gradient(circle at 20% 10%,#0b6655 0,transparent 35%),
+    radial-gradient(circle at 90% 80%,#075044 0,transparent 35%),
+    linear-gradient(145deg,#04100f,#09221e);
+}
+
+.loginBox{
+  width:100%;
+  max-width:390px;
   text-align:center;
 }
 
 .logo{
-  width:90px;
-  height:90px;
-  border-radius:25px;
-  background:#00a884;
+  width:92px;
+  height:92px;
+  margin:auto;
+  border-radius:28px;
+  background:linear-gradient(145deg,#00c896,#008f76);
   display:flex;
   align-items:center;
   justify-content:center;
-  font-size:45px;
-  margin-bottom:20px;
+  font-size:47px;
+  box-shadow:0 18px 45px rgba(0,200,150,.25);
 }
 
-h1{
-  margin:0 0 8px;
+.brand{
+  font-size:34px;
+  font-weight:800;
+  margin:20px 0 5px;
 }
 
-p{
-  color:#b8c7cc;
+.tagline{
+  color:#a9bbb7;
+  margin-bottom:38px;
 }
 
-button{
+.loginCard{
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.1);
+  backdrop-filter:blur(20px);
+  padding:22px;
+  border-radius:25px;
+}
+
+.loginBtn{
   width:100%;
-  max-width:350px;
   border:0;
-  border-radius:30px;
-  padding:16px;
-  margin-top:12px;
-  font-size:16px;
-  font-weight:bold;
-  cursor:pointer;
+  padding:15px;
+  border-radius:16px;
+  font-size:15px;
+  font-weight:700;
+  margin:7px 0;
 }
 
 .google{
   background:white;
-  color:#222;
+  color:#202124;
 }
 
 .phone{
-  background:#00a884;
+  background:#00b889;
   color:white;
 }
 
-#app{
+.smallText{
+  color:#879c97;
+  font-size:12px;
+  margin-top:18px;
+  line-height:1.5;
+}
+
+/* ================= PROFILE SETUP ================= */
+
+#setupScreen{
   display:none;
-  height:100vh;
-  background:#f5f7f8;
-  color:#111;
-  flex-direction:column;
-}
-
-.header{
-  height:65px;
-  background:#202c33;
-  color:white;
-  display:flex;
-  align-items:center;
-  padding:0 18px;
-}
-
-.header h2{
-  flex:1;
-}
-
-.content{
-  flex:1;
-  padding:20px;
+  height:100%;
+  padding:25px;
+  background:linear-gradient(145deg,#061512,#0b2823);
   overflow:auto;
 }
 
-.card{
-  background:white;
-  padding:18px;
-  border-radius:12px;
-  margin-bottom:12px;
+.setupHeader{
+  text-align:center;
+  margin:15px 0 25px;
 }
 
-.nav{
-  height:65px;
-  background:#202c33;
+.setupHeader h1{
+  margin:0 0 8px;
+}
+
+.setupHeader p{
+  color:#9eb4af;
+}
+
+.setupForm{
+  background:rgba(255,255,255,.07);
+  padding:22px;
+  border-radius:25px;
+  border:1px solid rgba(255,255,255,.08);
+}
+
+.photoPicker{
+  width:95px;
+  height:95px;
+  border-radius:50%;
+  margin:0 auto 20px;
+  background:#00ad88;
   display:flex;
-  justify-content:space-around;
+  align-items:center;
+  justify-content:center;
+  font-size:38px;
+  overflow:hidden;
+  border:3px solid rgba(255,255,255,.2);
+}
+
+.photoPicker img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.field{
+  margin-bottom:14px;
+}
+
+.field label{
+  display:block;
+  font-size:12px;
+  color:#a9bbb7;
+  margin-bottom:7px;
+}
+
+.field input,
+.field textarea{
+  width:100%;
+  border:1px solid #31534c;
+  outline:none;
+  background:#102a25;
+  color:white;
+  padding:14px;
+  border-radius:14px;
+}
+
+.field textarea{
+  resize:none;
+  height:90px;
+}
+
+.saveBtn{
+  width:100%;
+  border:0;
+  background:#00b889;
+  color:white;
+  padding:15px;
+  border-radius:15px;
+  font-weight:800;
+  font-size:15px;
+}
+
+/* ================= MAIN APP ================= */
+
+#mainApp{
+  display:none;
+  height:100%;
+  flex-direction:column;
+  background:#f4f7f6;
+  color:#101817;
+}
+
+.topbar{
+  height:68px;
+  background:#071b18;
+  display:flex;
+  align-items:center;
+  padding:0 17px;
+  color:white;
+}
+
+.topTitle{
+  flex:1;
+}
+
+.topTitle h2{
+  margin:0;
+  font-size:21px;
+}
+
+.topTitle span{
+  font-size:11px;
+  color:#80a49c;
+}
+
+.topAction{
+  border:0;
+  background:#12342e;
+  color:white;
+  width:40px;
+  height:40px;
+  border-radius:13px;
+  font-size:20px;
+}
+
+/* CONTENT */
+
+.content{
+  flex:1;
+  overflow-y:auto;
+  padding-bottom:72px;
+}
+
+.page{
+  display:none;
+}
+
+.page.active{
+  display:block;
+}
+
+/* SEARCH */
+
+.searchBox{
+  padding:12px;
+  background:#071b18;
+}
+
+.searchBox input{
+  width:100%;
+  border:0;
+  outline:0;
+  padding:12px 15px;
+  border-radius:14px;
+  background:#16332e;
+  color:white;
+}
+
+.searchBox input::placeholder{
+  color:#8ba39e;
+}
+
+/* CHAT */
+
+.chatItem{
+  background:white;
+  display:flex;
+  align-items:center;
+  padding:14px;
+  border-bottom:1px solid #e8edeb;
+}
+
+.avatar{
+  width:53px;
+  height:53px;
+  border-radius:50%;
+  background:linear-gradient(145deg,#00bd91,#007b68);
+  color:white;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:800;
+  font-size:21px;
+  overflow:hidden;
+  flex-shrink:0;
+}
+
+.avatar img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.chatInfo{
+  margin-left:13px;
+  flex:1;
+}
+
+.chatName{
+  font-weight:700;
+}
+
+.lastMsg{
+  color:#788782;
+  font-size:13px;
+  margin-top:5px;
+}
+
+/* STORIES */
+
+.storyArea{
+  background:#071b18;
+  padding:16px;
+  display:flex;
+  gap:13px;
+  overflow-x:auto;
+}
+
+.storyItem{
+  min-width:67px;
+  text-align:center;
+  color:white;
+  font-size:11px;
+}
+
+.storyAvatar{
+  width:61px;
+  height:61px;
+  border-radius:50%;
+  padding:3px;
+  margin:auto auto 6px;
+  background:linear-gradient(135deg,#00d39f,#7cf2cf);
+}
+
+.storyAvatarInner{
+  width:100%;
+  height:100%;
+  border-radius:50%;
+  background:#173b34;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+}
+
+.storyAvatarInner img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+/* POSTS */
+
+.post{
+  background:white;
+  margin-bottom:10px;
+  padding:15px;
+}
+
+.postHead{
+  display:flex;
   align-items:center;
 }
 
-.nav button{
-  background:none;
-  color:white;
-  width:auto;
-  margin:0;
-  padding:8px;
-  font-size:12px;
+.postUser{
+  margin-left:11px;
 }
 
-.nav span{
+.postUser b{
   display:block;
-  font-size:22px;
+}
+
+.postUser span{
+  font-size:11px;
+  color:#84908d;
+}
+
+.postText{
+  margin:14px 0;
+  line-height:1.5;
+}
+
+.postActions{
+  border-top:1px solid #edf0ef;
+  padding-top:11px;
+  display:flex;
+  justify-content:space-around;
+}
+
+.postActions button{
+  border:0;
+  background:none;
+  color:#53625f;
+}
+
+/* CHANNEL */
+
+.channel{
+  margin:10px;
+  background:white;
+  border-radius:17px;
+  padding:15px;
+  display:flex;
+  align-items:center;
+}
+
+.channelInfo{
+  flex:1;
+  margin-left:12px;
+}
+
+.channelInfo small{
+  display:block;
+  color:#788782;
+  margin-top:4px;
+}
+
+.followBtn{
+  border:0;
+  background:#00a884;
+  color:white;
+  padding:9px 14px;
+  border-radius:15px;
+}
+
+/* PROFILE */
+
+.profileCover{
+  background:linear-gradient(145deg,#06201c,#00a884);
+  padding:30px 20px 25px;
+  text-align:center;
+}
+
+.profileBig{
+  width:100px;
+  height:100px;
+  margin:auto;
+  border-radius:50%;
+  background:#123b33;
+  border:4px solid rgba(255,255,255,.8);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:40px;
+  overflow:hidden;
+}
+
+.profileBig img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+
+.profileCover h2{
+  margin:12px 0 3px;
+}
+
+.nickname{
+  color:#c8ebe4;
+  font-size:13px;
+}
+
+.bio{
+  margin:12px auto 0;
+  max-width:330px;
+  color:#e0f5f1;
+  font-size:13px;
+}
+
+.profileCard{
+  background:white;
+  margin:10px;
+  border-radius:17px;
+  overflow:hidden;
+}
+
+.profileRow{
+  padding:17px;
+  border-bottom:1px solid #edf0ef;
+  display:flex;
+  align-items:center;
+}
+
+.profileRow:last-child{
+  border:0;
+}
+
+.profileRow span:first-child{
+  width:35px;
+}
+
+.profileRow div{
+  flex:1;
+}
+
+.profileRow small{
+  color:#85918e;
+}
+
+/* BOTTOM NAV */
+
+.bottomNav{
+  position:absolute;
+  bottom:0;
+  left:0;
+  right:0;
+  height:70px;
+  background:#071b18;
+  display:flex;
+  align-items:center;
+  justify-content:space-around;
+}
+
+.navBtn{
+  border:0;
+  background:none;
+  color:#78908b;
+  font-size:10px;
+}
+
+.navBtn span{
+  display:block;
+  font-size:21px;
+  margin-bottom:4px;
+}
+
+.navBtn.active{
+  color:#00d09b;
+}
+
+/* MODAL */
+
+.modal{
+  display:none;
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,.6);
+  z-index:20;
+  align-items:flex-end;
+}
+
+.modalBox{
+  background:white;
+  color:#111;
+  width:100%;
+  border-radius:25px 25px 0 0;
+  padding:22px;
+}
+
+.modalBox h3{
+  margin-top:0;
+}
+
+.modalBox button{
+  width:100%;
+  padding:14px;
+  border:0;
+  background:#f0f3f2;
+  border-radius:13px;
+  margin-top:8px;
+}
+
+.danger{
+  color:#d33!important;
 }
 </style>
 </head>
 
 <body>
 
-<!-- LOGIN -->
-<div id="login">
+<div class="app">
 
-  <div class="logo">💬</div>
+<!-- ================= LOGIN ================= -->
 
-  <h1>WeChat</h1>
+<div id="loginScreen">
 
-  <p>Chat, connect, share and call.</p>
+  <div class="loginBox">
 
-  <button class="google" id="googleBtn">
-    🔵 Continue with Google
-  </button>
+    <div class="logo">💬</div>
 
-  <button class="phone" id="phoneBtn">
-    📱 Continue with Phone
-  </button>
+    <div class="brand">WeChat</div>
+
+    <div class="tagline">
+      Connect. Share. Chat. Call.
+    </div>
+
+    <div class="loginCard">
+
+      <button class="loginBtn google" id="googleLogin">
+        🔵 Continue with Google
+      </button>
+
+      <button class="loginBtn phone" id="phoneLogin">
+        📱 Continue with Phone
+      </button>
+
+      <div class="smallText">
+        By continuing, you agree to use WeChat responsibly.
+      </div>
+
+    </div>
+
+  </div>
 
 </div>
 
 
-<!-- APP -->
-<div id="app">
+<!-- ================= PROFILE SETUP ================= -->
 
-  <div class="header">
-    <h2 id="title">Chats</h2>
-    <b>＋</b>
+<div id="setupScreen">
+
+  <div class="setupHeader">
+    <h1>Create your profile</h1>
+    <p>Let's set up your WeChat identity.</p>
   </div>
+
+  <div class="setupForm">
+
+    <label class="photoPicker" for="photoInput" id="photoPreview">
+      👤
+    </label>
+
+    <input
+      id="photoInput"
+      type="file"
+      accept="image/*"
+      hidden
+    >
+
+    <div class="field">
+      <label>Full name</label>
+      <input id="fullName" placeholder="Your name">
+    </div>
+
+    <div class="field">
+      <label>Nickname / username</label>
+      <input id="nickname" placeholder="@yourname">
+    </div>
+
+    <div class="field">
+      <label>Bio</label>
+      <textarea
+        id="bioInput"
+        placeholder="Tell people something about you..."
+      ></textarea>
+    </div>
+
+    <div class="field">
+      <label>Account privacy</label>
+      <select id="privacy" style="
+        width:100%;
+        padding:14px;
+        border-radius:14px;
+        background:#102a25;
+        color:white;
+        border:1px solid #31534c;
+      ">
+        <option value="public">Public account</option>
+        <option value="private">Private account</option>
+      </select>
+    </div>
+
+    <button class="saveBtn" id="createProfile">
+      Create my profile
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- ================= MAIN APP ================= -->
+
+<div id="mainApp">
+
+  <div class="topbar">
+
+    <div class="topTitle">
+      <h2 id="pageTitle">Chats</h2>
+      <span id="welcomeText">Welcome</span>
+    </div>
+
+    <button class="topAction" id="topAction">
+      ＋
+    </button>
+
+  </div>
+
 
   <div class="content">
 
-    <div class="card">
-      💬 <b>Chats</b>
-      <p>Real-time chat will be connected next.</p>
-    </div>
+    <!-- CHATS -->
 
-    <div class="card">
-      🟢 <b>Stories</b>
-      <p>Post and view stories.</p>
-    </div>
+    <section class="page active" id="chatsPage">
 
-    <div class="card">
-      📝 <b>Posts</b>
-      <p>Share photos, videos and text.</p>
-    </div>
+      <div class="searchBox">
+        <input placeholder="🔍 Search chats">
+      </div>
 
-    <div class="card">
-      📢 <b>Channels</b>
-      <p>Create and follow channels.</p>
-    </div>
+      <div class="chatItem">
 
-    <div class="card">
-      📞 <b>Calls</b>
-      <p>Voice and video calling will be connected next.</p>
-    </div>
+        <div class="avatar">👋</div>
+
+        <div class="chatInfo">
+          <div class="chatName">Welcome to WeChat</div>
+          <div class="lastMsg">
+            Your real chats will appear here.
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- STORIES -->
+
+    <section class="page" id="storiesPage">
+
+      <div class="storyArea">
+
+        <div class="storyItem">
+
+          <div class="storyAvatar">
+            <div class="storyAvatarInner" id="myStoryAvatar">
+              ＋
+            </div>
+          </div>
+
+          Your story
+
+        </div>
+
+        <div class="storyItem">
+
+          <div class="storyAvatar">
+            <div class="storyAvatarInner">😊</div>
+          </div>
+
+          Friends
+
+        </div>
+
+        <div class="storyItem">
+
+          <div class="storyAvatar">
+            <div class="storyAvatarInner">🔥</div>
+          </div>
+
+          Explore
+
+        </div>
+
+      </div>
+
+      <div class="post">
+
+        <b>Stories</b>
+
+        <p>
+          Share photos and videos with your friends.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- POSTS -->
+
+    <section class="page" id="postsPage">
+
+      <div class="post">
+
+        <div class="postHead">
+
+          <div class="avatar" id="postAvatar">
+            N
+          </div>
+
+          <div class="postUser">
+
+            <b id="postName">
+              Nicky
+            </b>
+
+            <span>
+              Just now
+            </span>
+
+          </div>
+
+        </div>
+
+        <div class="postText">
+          Welcome to WeChat! 🚀
+        </div>
+
+        <div class="postActions">
+
+          <button>❤️ Like</button>
+          <button>💬 Comment</button>
+          <button>↗️ Share</button>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- CHANNELS -->
+
+    <section class="page" id="channelsPage">
+
+      <div class="channel">
+
+        <div class="avatar">
+          📢
+        </div>
+
+        <div class="channelInfo">
+
+          <b>Discover Channels</b>
+
+          <small>
+            Follow creators and communities.
+          </small>
+
+        </div>
+
+        <button class="followBtn">
+          Explore
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- PROFILE -->
+
+    <section class="page" id="profilePage">
+
+      <div class="profileCover">
+
+        <div class="profileBig" id="profileAvatar">
+          👤
+        </div>
+
+        <h2 id="profileName">
+          Your Name
+        </h2>
+
+        <div class="nickname" id="profileNickname">
+          @username
+        </div>
+
+        <div class="bio" id="profileBio">
+          Your bio will appear here.
+        </div>
+
+      </div>
+
+
+      <div class="profileCard">
+
+        <div class="profileRow">
+          <span>👤</span>
+          <div>
+            <b>Name</b>
+            <small id="rowName">-</small>
+          </div>
+        </div>
+
+        <div class="profileRow">
+          <span>✨</span>
+          <div>
+            <b>Nickname</b>
+            <small id="rowNickname">-</small>
+          </div>
+        </div>
+
+        <div class="profileRow">
+          <span>🔒</span>
+          <div>
+            <b>Privacy</b>
+            <small id="rowPrivacy">Public</small>
+          </div>
+        </div>
+
+        <div class="profileRow" id="editProfile">
+          <span>✏️</span>
+          <div>
+            <b>Edit profile</b>
+            <small>Change your information</small>
+          </div>
+        </div>
+
+        <div class="profileRow" id="logoutBtn">
+          <span>🚪</span>
+          <div>
+            <b class="danger">Log out</b>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
 
   </div>
 
-  <div class="nav">
 
-    <button onclick="show('Chats')">
-      <span>💬</span>Chats
+  <!-- NAV -->
+
+  <div class="bottomNav">
+
+    <button class="navBtn active" data-page="chats">
+      <span>💬</span>
+      Chats
     </button>
 
-    <button onclick="show('Stories')">
-      <span>🟢</span>Stories
+    <button class="navBtn" data-page="stories">
+      <span>🟢</span>
+      Stories
     </button>
 
-    <button onclick="show('Posts')">
-      <span>📝</span>Posts
+    <button class="navBtn" data-page="posts">
+      <span>📝</span>
+      Posts
     </button>
 
-    <button onclick="show('Channels')">
-      <span>📢</span>Channels
+    <button class="navBtn" data-page="channels">
+      <span>📢</span>
+      Channels
     </button>
 
-    <button onclick="show('Profile')">
-      <span>👤</span>Profile
+    <button class="navBtn" data-page="profile">
+      <span>👤</span>
+      Profile
     </button>
 
   </div>
@@ -213,33 +972,239 @@ button{
 
 <script>
 
-function enterApp(){
+const $ = id => document.getElementById(id);
 
-  document.getElementById("login").style.display = "none";
+let profilePhoto = "";
 
-  document.getElementById("app").style.display = "flex";
+
+/* ================= LOGIN ================= */
+
+function startLogin(){
+
+  $("loginScreen").style.display = "none";
+
+  $("setupScreen").style.display = "block";
 
 }
 
-document.getElementById("googleBtn").onclick = function(){
+$("googleLogin").addEventListener("click", startLogin);
 
-  enterApp();
+$("phoneLogin").addEventListener("click", startLogin);
 
-};
 
-document.getElementById("phoneBtn").onclick = function(){
+/* ================= PHOTO ================= */
 
-  enterApp();
+$("photoInput").addEventListener("change", function(){
 
-};
+  const file = this.files[0];
 
-function show(name){
+  if(!file) return;
 
-  document.getElementById("title").innerText = name;
+  const reader = new FileReader();
+
+  reader.onload = function(e){
+
+    profilePhoto = e.target.result;
+
+    $("photoPreview").innerHTML =
+      `<img src="${profilePhoto}">`;
+
+  };
+
+  reader.readAsDataURL(file);
+
+});
+
+
+/* ================= CREATE PROFILE ================= */
+
+$("createProfile").addEventListener("click", function(){
+
+  const name = $("fullName").value.trim();
+  const nickname = $("nickname").value.trim();
+  const bio = $("bioInput").value.trim();
+  const privacy = $("privacy").value;
+
+  if(!name){
+    alert("Please enter your name.");
+    return;
+  }
+
+  if(!nickname){
+    alert("Please create a nickname.");
+    return;
+  }
+
+  const profile = {
+    name:name,
+    nickname:nickname.startsWith("@")
+      ? nickname
+      : "@"+nickname,
+    bio:bio || "Hey! I'm using WeChat.",
+    privacy:privacy,
+    photo:profilePhoto
+  };
+
+  localStorage.setItem(
+    "wechat_profile",
+    JSON.stringify(profile)
+  );
+
+  openApp(profile);
+
+});
+
+
+/* ================= OPEN APP ================= */
+
+function openApp(profile){
+
+  $("loginScreen").style.display = "none";
+  $("setupScreen").style.display = "none";
+  $("mainApp").style.display = "flex";
+
+  loadProfile(profile);
+
+}
+
+
+/* ================= LOAD PROFILE ================= */
+
+function loadProfile(profile){
+
+  $("profileName").textContent = profile.name;
+  $("profileNickname").textContent = profile.nickname;
+  $("profileBio").textContent = profile.bio;
+
+  $("rowName").textContent = profile.name;
+  $("rowNickname").textContent = profile.nickname;
+
+  $("rowPrivacy").textContent =
+    profile.privacy === "private"
+    ? "Private"
+    : "Public";
+
+  $("postName").textContent = profile.name;
+
+  $("welcomeText").textContent =
+    "Hi, " + profile.name;
+
+  if(profile.photo){
+
+    $("profileAvatar").innerHTML =
+      `<img src="${profile.photo}">`;
+
+    $("postAvatar").innerHTML =
+      `<img src="${profile.photo}">`;
+
+    $("myStoryAvatar").innerHTML =
+      `<img src="${profile.photo}">`;
+
+  }else{
+
+    const letter =
+      profile.name.charAt(0).toUpperCase();
+
+    $("profileAvatar").textContent = letter;
+    $("postAvatar").textContent = letter;
+
+  }
+
+}
+
+
+/* ================= NAVIGATION ================= */
+
+document.querySelectorAll(".navBtn").forEach(btn => {
+
+  btn.addEventListener("click", function(){
+
+    const page = this.dataset.page;
+
+    document.querySelectorAll(".page")
+      .forEach(p => p.classList.remove("active"));
+
+    $(page+"Page").classList.add("active");
+
+    document.querySelectorAll(".navBtn")
+      .forEach(b => b.classList.remove("active"));
+
+    this.classList.add("active");
+
+    const titles = {
+      chats:"Chats",
+      stories:"Stories",
+      posts:"Posts",
+      channels:"Channels",
+      profile:"Profile"
+    };
+
+    $("pageTitle").textContent =
+      titles[page];
+
+  });
+
+});
+
+
+/* ================= EDIT PROFILE ================= */
+
+$("editProfile").addEventListener("click", function(){
+
+  const old =
+    JSON.parse(localStorage.getItem("wechat_profile"));
+
+  if(!old) return;
+
+  $("mainApp").style.display = "none";
+  $("setupScreen").style.display = "block";
+
+  $("fullName").value = old.name;
+  $("nickname").value = old.nickname;
+  $("bioInput").value = old.bio;
+  $("privacy").value = old.privacy;
+
+  profilePhoto = old.photo || "";
+
+  if(profilePhoto){
+
+    $("photoPreview").innerHTML =
+      `<img src="${profilePhoto}">`;
+
+  }
+
+});
+
+
+/* ================= LOGOUT ================= */
+
+$("logoutBtn").addEventListener("click", function(){
+
+  if(confirm("Log out from this device?")){
+
+    localStorage.removeItem("wechat_profile");
+
+    location.reload();
+
+  }
+
+});
+
+
+/* ================= STARTUP ================= */
+
+const savedProfile =
+  localStorage.getItem("wechat_profile");
+
+if(savedProfile){
+
+  openApp(
+    JSON.parse(savedProfile)
+  );
 
 }
 
 </script>
 
 </body>
-</html>
+      </html>
