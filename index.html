@@ -730,15 +730,22 @@ function setupRecaptcha(){
 
 $("sendOtp").addEventListener("click", async () => {
 
-  const phone =
-    $("phoneNumber").value.trim();
+  let phone =
+  $("phoneNumber").value.trim();
 
-  if(!phone){
+phone = phone.replace(/\s+/g, "");
 
-    alert("Enter phone number.");
+if(phone.startsWith("0")){
+  phone = phone.substring(1);
+}
 
-    return;
+if(!phone.startsWith("+91")){
+  phone = "+91" + phone;
+}
 
+if(!/^\+91\d{10}$/.test(phone)){
+  alert("Enter a valid 10-digit Indian phone number.");
+  return;
   }
 
   try {
