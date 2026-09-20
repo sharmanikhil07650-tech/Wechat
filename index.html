@@ -486,35 +486,28 @@ body{
   </div>
 </div>
 
-<script>
+<<script>
+document.addEventListener("DOMContentLoaded", function () {
 
-function login(){
-  localStorage.setItem("wechat_logged_in","true");
-  document.getElementById("loginPage").style.display="none";
-  document.getElementById("mainApp").style.display="flex";
-}
+  const loginPage = document.getElementById("loginPage");
+  const mainApp = document.getElementById("mainApp");
 
-function logout(){
-  localStorage.removeItem("wechat_logged_in");
-  location.reload();
-}
+  const googleBtn = document.querySelector(".google");
+  const phoneBtn = document.querySelector(".phone");
 
-function showPage(page){
+  function openApp() {
+    localStorage.setItem("wechat_logged_in", "true");
+    loginPage.style.display = "none";
+    mainApp.style.display = "flex";
+  }
 
-  document.querySelectorAll(".page").forEach(p=>{
-    p.classList.remove("active");
-  });
+  googleBtn.addEventListener("click", openApp);
+  phoneBtn.addEventListener("click", openApp);
 
-  document.getElementById(page+"Page").classList.add("active");
+  if (localStorage.getItem("wechat_logged_in") === "true") {
+    loginPage.style.display = "none";
+    mainApp.style.display = "flex";
+  }
 
-  const titles={
-    chats:"Chats",
-    stories:"Stories",
-    posts:"Posts",
-    channels:"Channels",
-    profile:"Profile"
-  };
-
-  document.getElementById("pageTitle").textContent=titles[page];
-
-  document.querySelectorAll(".nav button").for
+});
+</script>
